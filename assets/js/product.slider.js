@@ -74,3 +74,6 @@ function bindTierLevel(product) {
 
   main.append(' ' + product.tierName);  
 }
+
+
+

@@ -162,4 +162,13 @@ ion-content::part(scroll)::-webkit-scrollbar {
   background: #fff;
 }
 
+.product-supplement {
+  display: none;
+  margin-top: 24px;
+}
+
+.product-supplement.is-visible {
+  display: block;
+}
+
 

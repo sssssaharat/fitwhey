@@ -12,7 +12,9 @@ export const mockProduct = {
     currency: '฿',
   },
 
-  yourPrice: 1600,    
+  yourPrice: 1600, 
+  yourPriceInfo: 'ราคานี้สำหรับ Pro Member ของคุณในปัจจุบัน',
+   
 
   variants: [
     {

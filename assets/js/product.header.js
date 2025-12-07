@@ -23,6 +23,8 @@ export function initProductHeader(product) {
   buildVariantButtons(root, product);
 
   bindSupplementButton(root, product);
+  bindYourPriceInfo(root, product);
+  
 }
 
 function formatPrice(amount, currency) {
@@ -101,11 +103,41 @@ function bindSupplementButton(root, product) {
   const sup = product.supplement;
   if (!btn || !sup) return;
 
-  btn.textContent = sup.buttonLabel || 'View Supplement Fact';
+  const defaultLabel = sup.buttonLabel || 'View Supplement Fact';
+  const hideLabel = 'Hide Supplement Fact';  // หรือ 'ซ่อนรายละเอียด'
+
+  // ตั้งข้อความเริ่มต้น
+  btn.textContent = defaultLabel;
 
   btn.addEventListener('click', () => {
-    const target = document.getElementById(sup.anchorId);
-    if (!target) return;
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const section = document.getElementById(sup.anchorId);
+    if (!section) return;
+
+    const isVisibleNow = section.classList.toggle('is-visible'); // toggle class
+
+    // เปลี่ยนข้อความปุ่มตามสถานะ
+    btn.textContent = isVisibleNow ? hideLabel : defaultLabel;
+
+    // ถ้าเป็นการ "เปิด" ค่อยเลื่อนลงไปให้เห็น
+    if (isVisibleNow) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
+}
+
+
+function bindYourPriceInfo(root, product) {
+  const info = product.yourPriceInfo;
+  if (!info) return;
+
+  const yourPriceRow = root.querySelector('.price-w.border-left .sub-text');
+  if (!yourPriceRow) return;
+
+  const icon = yourPriceRow.querySelector('ion-icon');
+  if (!icon) return;
+
+  icon.setAttribute('title', info);
+
+  icon.setAttribute('aria-label', info);
+  icon.setAttribute('role', 'img');
 }
