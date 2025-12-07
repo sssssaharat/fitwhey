@@ -83,41 +83,44 @@
                 </div>
                 <!-- product heading info -->
                 <div class="product-heading-wrap">
-                    <div class="product-title">Baam 100% My Whey</div>
+                    <div class="product-title"></div>
+
                     <div class="rp-content">
                         <ion-buttons class="rate">
-                            <label>★★★★★</label><span class="review-count">(200 Reviews)</span>
+                            <label>★★★★★</label>
+                            <span class="review-count"></span>
                         </ion-buttons>
-                        <span class="points">500</span>
+                        <span class="points"></span>
                     </div>
+
                     <div class="pricing-content">
                         <div class="price-w">
                             <div class="sub-text">Price</div>
-                            <div class="price-d">฿1,800<span class="price-o">฿2,000</span></div>
+                            <div class="price-d">
+                                <!-- JS จะใส่ราคา -->
+                                <span class="price-o"></span>
+                            </div>
                         </div>
                         <div class="price-w border-left">
-                            <div class="sub-text">Your Price<ion-icon name="alert-circle-outline"></ion-icon></div>
-                            <div class="price-d">฿1,600</div>
-                            <!--
-                            <div class="sub-text">Next Tier<ion-icon name="alert-circle-outline"></ion-icon></div>
-                            <div class="price-nt">฿1,600</div>
-                            -->
+                            <div class="sub-text">
+                                Your Price
+                                <ion-icon name="alert-circle-outline"></ion-icon>
+                            </div>
+                            <div class="price-d"></div>
                         </div>
                     </div>
+
                     <ion-buttons class="pd-size-slider-tab">
-                        <ion-button class="size-sub-btn inactive"><ion-icon
-                                name="chevron-back-circle-outline"></ion-icon></ion-button>
-                        <ion-button class="size-sub-btn active">Sample</ion-button>
-                        <ion-button class="size-sub-btn inactive">250g</ion-button>
-                        <ion-button class="size-sub-btn inactive">2lb</ion-button>
-                        <ion-button class="size-sub-btn inactive">5lb</ion-button>
-                        <ion-button class="size-sub-btn inactive">10lb</ion-button>
-                        <ion-button class="size-sub-btn inactive">12lb</ion-button>
+                        <!-- ปุ่ม size-sub-btn จะถูกสร้างด้วย JS -->
                     </ion-buttons>
+
                     <ion-buttons class="supp-btn-wrap">
-                        <ion-button class="supp-btn">View Supplement Fact</ion-button>
+                        <ion-button class="supp-btn">
+                            
+                        </ion-button>
                     </ion-buttons>
                 </div>
+
             </div>
             <div class="line-break"></div>
             <!-- mid detail section -->
@@ -136,7 +139,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script type="module" src="assets/js/slider.js"></script>
+    <script type="module" src="assets/js/product.page.js"></script>
 
     <script>
         startCountdown(24);
@@ -162,7 +165,7 @@
                 remaining--;
             };
 
-            update(); 
+            update();
             const timer = setInterval(update, 1000);
         }
 

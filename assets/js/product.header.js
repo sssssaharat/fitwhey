@@ -1,13 +1,9 @@
-// assets/js/product.header.js
-
 export function initProductHeader(product) {
   const root = document.querySelector('.product-heading-wrap');
   if (!root) return;
 
-  // title
   root.querySelector('.product-title').textContent = product.title;
 
-  // rating + reviews
   const rateLabel   = root.querySelector('.rate label');
   const reviewCount = root.querySelector('.review-count');
   const pointsEl    = root.querySelector('.points');
@@ -17,7 +13,6 @@ export function initProductHeader(product) {
   reviewCount.textContent = `(${product.reviewCount} Reviews)`;
   pointsEl.textContent = product.points;
 
-  // price
   const basePriceEl     = root.querySelector('.price-w:first-child .price-d');
   const originalPriceEl = root.querySelector('.price-w:first-child .price-o');
   const yourPriceEl     = root.querySelector('.price-w.border-left .price-d');
@@ -25,10 +20,8 @@ export function initProductHeader(product) {
   setPrice(basePriceEl, product.price.base, product.price.currency, originalPriceEl, product.price.original);
   setPrice(yourPriceEl, product.yourPrice, product.price.currency);
 
-  // variants
   buildVariantButtons(root, product);
 
-  // ปุ่ม View Supplement Fact → scroll ลงข้างล่าง
   bindSupplementButton(root, product);
 }
 
@@ -39,7 +32,6 @@ function formatPrice(amount, currency) {
 function setPrice(el, amount, currency, originalEl, originalAmount) {
   if (!el) return;
 
-  // ลบ text node เดิม แต่ไม่ลบ span ข้างใน
   const toRemove = [];
   el.childNodes.forEach(n => {
     if (n.nodeType === Node.TEXT_NODE && n.textContent.trim() !== '') {

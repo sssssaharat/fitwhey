@@ -7,23 +7,64 @@ export const mockProduct = {
   points: 500,
 
   price: {
-    base: 1800,      
-    original: 2000,   
+    base: 1800,       
+    original: 2000,    
     currency: '฿',
   },
 
-  yourPrice: 1600,  
+  yourPrice: 1600,    
 
   variants: [
-    { id: 'sample', label: 'Sample', price: 200,  yourPrice: 180,  points: 50 },
-    { id: '250g',   label: '250g',   price: 600,  yourPrice: 550, points: 150 },
-    { id: '2lb',    label: '2lb',    price: 1200, yourPrice: 1100, points: 300 },
-    { id: '5lb',    label: '5lb',    price: 1800, yourPrice: 1600, points: 500 },
-    { id: '10lb',   label: '10lb',   price: 3200, yourPrice: 2900, points: 900 },
-    { id: '12lb',   label: '12lb',   price: 3800, yourPrice: 3400, points: 1100 },
+    {
+      id: 'sample',
+      label: 'Sample',
+      price: 200,
+      originalPrice: 220,
+      yourPrice: 180,
+      points: 50,
+    },
+    {
+      id: '250g',
+      label: '250g',
+      price: 600,
+      originalPrice: 650,
+      yourPrice: 550,
+      points: 150,
+    },
+    {
+      id: '2lb',
+      label: '2lb',
+      price: 1200,
+      originalPrice: 1300,
+      yourPrice: 1100,
+      points: 300,
+    },
+    {
+      id: '5lb',         
+      label: '5lb',
+      price: 1800,
+      originalPrice: 2000,
+      yourPrice: 1600,
+      points: 500,
+    },
+    {
+      id: '10lb',
+      label: '10lb',
+      price: 3200,
+      originalPrice: 3500,
+      yourPrice: 2900,
+      points: 900,
+    },
+    {
+      id: '12lb',
+      label: '12lb',
+      price: 3800,
+      originalPrice: 4200,
+      yourPrice: 3400,
+      points: 1100,
+    },
   ],
 
-  // ---------- image slider ----------
   weightLabel: '5lb',
   images: [
     { url: 'assets/img/place-holder0.png' },
@@ -34,7 +75,6 @@ export const mockProduct = {
   tierName: 'Pro Member',
   tierIcon: 'assets/icon/dumbbell-icon.svg',
 
-  // ---------- supplement fact (section ด้านล่าง) ----------
   supplement: {
     anchorId: 'supplement-fact',
     buttonLabel: 'View Supplement Fact',
@@ -43,7 +83,7 @@ export const mockProduct = {
     productLine: 'Baam 100% My Whey',
     highlight: '"เวย์โปรตีนที่ไม่ได้สร้างคนธรรมดา"',
     description:
-      'เวย์โปรตีนไอโซเลต สำหรับผู้ที่ต้องการดูแลโภชนาการอย่างเข้มข้น ผ่านกระบวนการกรองพิเศษ ...', // ตัดให้สั้นหน่อยได้
+      'เวย์โปรตีนไอโซเลต สำหรับผู้ที่ต้องการดูแลโภชนาการอย่างเข้มข้น ผ่านกระบวนการกรองพิเศษ เพื่อลดไขมัน น้ำตาล และคาร์โบไฮเดรตให้เหลือในระดับต่ำที่สุด โปรตีนเต็มแม็กซ์ 30 กรัม ไม่มีน้ำตาล ใช้ได้แม้ผู้ที่มีภาวะแพ้แลคโตส สูตรนี้พัฒนามาเพื่อผู้ที่ออกกำลังกายหรือผู้ที่ดูแลสุขภาพ และมองหาเวย์โปรตีนคุณภาพระดับสูง ในราคาที่คุ้มค่าที่สุด',
 
     claim: 'คำเตือน: ไม่มีไขมัน ไม่มีน้ำตาล = ไม่มีข้ออ้าง',
 
@@ -62,6 +102,6 @@ export const mockProduct = {
 
     targetTitle: 'เหมาะกับใคร ?',
     targetText:
-      'ผู้ที่ต้องการเสริมโปรตีนในแต่ละวันให้เพียงพอ ผู้ที่ควบคุมพลังงานจากไขมันและน้ำตาล ...',
+      'ผู้ที่ต้องการเสริมโปรตีนในแต่ละวันให้เพียงพอ ผู้ที่ควบคุมพลังงานจากไขมันและน้ำตาล ผู้ที่หลีกเลี่ยงแลคโตสในผลิตภัณฑ์นม และนักกีฬาหรือผู้ที่ออกกำลังกายเป็นประจำที่ต้องการโปรตีนคุณภาพสูง',
   },
 };
