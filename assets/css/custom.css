@@ -172,4 +172,14 @@ ion-content::part(scroll)::-webkit-scrollbar {
   display: block;
 }
 
+.pd-mid-sec-wrap {
+  position: relative;
+}
+
+.pd-mid-nav-wrap {
+  position: sticky;
+  top: 0;             /* หรือ top ตามระยะ header ด้านบน */
+  z-index: 20;
+}
+
 

@@ -28,7 +28,7 @@ export function initProductSlider(product) {
 
   wrap.appendChild(frag);
 
-  const slider = new Swiper('.slider-item', {
+  const slider = new Swiper('.pd-image-slider', {
     slidesPerView: 1,
     spaceBetween: 0,
     loop: false,
@@ -52,6 +52,7 @@ export function initProductSlider(product) {
 
   updateUI();
 }
+
 function bindTierLevel(product) {
   const tier = document.querySelector('.tier-level');
   if (!tier) return;

@@ -104,9 +104,8 @@ function bindSupplementButton(root, product) {
   if (!btn || !sup) return;
 
   const defaultLabel = sup.buttonLabel || 'View Supplement Fact';
-  const hideLabel = 'Hide Supplement Fact';  // หรือ 'ซ่อนรายละเอียด'
+  const hideLabel = 'Hide Supplement Fact'; 
 
-  // ตั้งข้อความเริ่มต้น
   btn.textContent = defaultLabel;
 
   btn.addEventListener('click', () => {
@@ -115,16 +114,13 @@ function bindSupplementButton(root, product) {
 
     const isVisibleNow = section.classList.toggle('is-visible'); // toggle class
 
-    // เปลี่ยนข้อความปุ่มตามสถานะ
     btn.textContent = isVisibleNow ? hideLabel : defaultLabel;
 
-    // ถ้าเป็นการ "เปิด" ค่อยเลื่อนลงไปให้เห็น
     if (isVisibleNow) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
 }
-
 
 function bindYourPriceInfo(root, product) {
   const info = product.yourPriceInfo;
