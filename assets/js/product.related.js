@@ -2,6 +2,9 @@
 export function initRelatedProductSlider(relatedProducts) {
   const sliderRoot = document.querySelector('.pd-product-slider');
   const wrapper = sliderRoot?.querySelector('.pd-product-slide');
+  const cartBadge = document.querySelector('.noti-count');
+  let cartCount = 0; // หรือเริ่มที่ 0 ก็ได้
+
   if (!sliderRoot || !wrapper) return;
 
   if (!relatedProducts || !relatedProducts.length) return;
@@ -54,16 +57,31 @@ export function initRelatedProductSlider(relatedProducts) {
   });
 
   wrapper.querySelectorAll('.cart ion-button').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const card = btn.closest('.pd-product-container');
-      const productId = card?.dataset.productId;
-      console.log('add to cart:', productId);
+  btn.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    const card = btn.closest('.pd-product-container');
+    const productId = card?.dataset.productId;
+
+    // เพิ่มจำนวนสินค้าในตะกร้า
+    cartCount++;
+    cartBadge.textContent = cartCount;
+
+    await showAddedToCartToast();
+        });
     });
-  });
+
 }
 
 function formatPrice(amount, currency) {
   if (amount == null) return '';
   return `${currency}${Number(amount).toLocaleString('th-TH')}`;
+}
+
+async function showAddedToCartToast() {
+  const toast = document.createElement('ion-toast');
+  toast.message = 'เพิ่มสินค้าในตะกร้าแล้ว';
+  toast.duration = 1500;  // แสดง 1.5 วินาที
+  toast.position = 'bottom';
+  document.body.appendChild(toast);
+  await toast.present();
 }
