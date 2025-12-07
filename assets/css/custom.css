@@ -165,6 +165,7 @@ ion-content::part(scroll)::-webkit-scrollbar {
 .product-supplement {
   display: none;
   margin-top: 24px;
+  padding: 24px;
 }
 
 .product-supplement.is-visible {
