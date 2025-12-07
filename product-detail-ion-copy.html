@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>product</title>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+
+<body>
+    <ion-app>
+        <!-- header -->
+        <ion-header mode="md" class="top-header-wrap ion-no-border fixed">
+            <ion-toolbar class="toolbar-wrap clear">
+                <ion-buttons slot="start">
+                    <ion-button class="header-btn back-btn" onclick="location.href='modal-cart-ion.html'">
+                        <img src="assets/icon/white-back-arrow-icon.svg">
+                    </ion-button>
+                </ion-buttons>
+                </ion-searchbar>
+                <ion-buttons slot="primary" class="icon-btn">
+                    <ion-button>
+                        <ion-badge class="noti-count">2</ion-badge>
+                        <img src="assets/icon/cart-icon.svg" alt="" class="icon-size">
+                    </ion-button>
+                    <ion-button>
+                        <ion-badge class="noti-count">99</ion-badge>
+                        <img src="assets/icon/message-icon.svg" alt="" class="icon-size message">
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+        <!-- mid content -->
+        <ion-content class="main-content-pd" fullscreen>
+            <!-- top detail section -->
+            <div class="pd-top-sec-wrap">
+
+                <div class="slider-item pd-image-slider">
+                    <ion-buttons class="slide-btn slide-btn-left">
+                        <ion-icon name="chevron-back-outline"></ion-icon>
+                    </ion-buttons>
+
+                    <ion-buttons class="slide-btn slide-btn-right">
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </ion-buttons>
+
+                    <div class="product-label">
+                        <span></span>
+                    </div>
+
+                    <div class="slide-count">
+                        <span></span>
+                    </div>
+
+                    <div class="swiper-wrapper pd-image-slide"></div>
+
+                    <div class="tier-level">
+                        <span class="sub-text"></span>
+                        <span class="main-text">
+                            <img>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- flash -->
+                <div class="pd-flash-wrap">
+                    <span class="flash-header">Flash Sale</span>
+                    <span class="timer">
+                        <ul>
+                            <li class="hh">00</li> :
+                            <li class="mm">00</li> :
+                            <li class="ss">00</li>
+                        </ul>
+                    </span>
+                </div>
+                <!-- product heading info -->
+                <div class="product-heading-wrap">
+                    <div class="product-title">Baam 100% My Whey</div>
+                    <div class="rp-content">
+                        <ion-buttons class="rate">
+                            <label>★★★★★</label><span class="review-count">(200 Reviews)</span>
+                        </ion-buttons>
+                        <span class="points">500</span>
+                    </div>
+                    <div class="pricing-content">
+                        <div class="price-w">
+                            <div class="sub-text">Price</div>
+                            <div class="price-d">฿1,800<span class="price-o">฿2,000</span></div>
+                        </div>
+                        <div class="price-w border-left">
+                            <div class="sub-text">Your Price<ion-icon name="alert-circle-outline"></ion-icon></div>
+                            <div class="price-d">฿1,600</div>
+                            <!--
+                            <div class="sub-text">Next Tier<ion-icon name="alert-circle-outline"></ion-icon></div>
+                            <div class="price-nt">฿1,600</div>
+                            -->
+                        </div>
+                    </div>
+                    <ion-buttons class="pd-size-slider-tab">
+                        <ion-button class="size-sub-btn inactive"><ion-icon
+                                name="chevron-back-circle-outline"></ion-icon></ion-button>
+                        <ion-button class="size-sub-btn active">Sample</ion-button>
+                        <ion-button class="size-sub-btn inactive">250g</ion-button>
+                        <ion-button class="size-sub-btn inactive">2lb</ion-button>
+                        <ion-button class="size-sub-btn inactive">5lb</ion-button>
+                        <ion-button class="size-sub-btn inactive">10lb</ion-button>
+                        <ion-button class="size-sub-btn inactive">12lb</ion-button>
+                    </ion-buttons>
+                    <ion-buttons class="supp-btn-wrap">
+                        <ion-button class="supp-btn">View Supplement Fact</ion-button>
+                    </ion-buttons>
+                </div>
+            </div>
+            <div class="line-break"></div>
+            <!-- mid detail section -->
+
+            <div class="line-break"></div>
+            <!-- bottom detail section -->
+            <!-- recommended promo set section -->
+            <div class="p-title">Bundle Set</div>
+
+            <div class="line-break"></div>
+            <!-- review section -->
+
+        </ion-content>
+
+    </ion-app>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script type="module" src="assets/js/slider.js"></script>
+
+    <script>
+        startCountdown(24);
+
+        function startCountdown(hours = 24) {
+            let remaining = hours * 60 * 60;
+
+            const hh = document.querySelector(".timer .hh");
+            const mm = document.querySelector(".timer .mm");
+            const ss = document.querySelector(".timer .ss");
+
+            const update = () => {
+                if (remaining <= 0) return clearInterval(timer);
+
+                const h = Math.floor(remaining / 3600);
+                const m = Math.floor((remaining % 3600) / 60);
+                const s = remaining % 60;
+
+                hh.textContent = String(h).padStart(2, "0");
+                mm.textContent = String(m).padStart(2, "0");
+                ss.textContent = String(s).padStart(2, "0");
+
+                remaining--;
+            };
+
+            update(); 
+            const timer = setInterval(update, 1000);
+        }
+
+    </script>
+
+
+
+
+</body>
+
+</html>
