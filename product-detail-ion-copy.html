@@ -31,8 +31,8 @@
                         <ion-badge class="noti-count"></ion-badge>
                         <img src="assets/icon/cart-icon.svg" alt="" class="icon-size">
                     </ion-button>
-                    <ion-button>
-                        <ion-badge class="noti-count">99</ion-badge>
+                    <ion-button class="icon-btn-item">
+                        <ion-badge class="message-count"></ion-badge>
                         <img src="assets/icon/message-icon.svg" alt="" class="icon-size message">
                     </ion-button>
                 </ion-buttons>
@@ -508,7 +508,7 @@
                             </p>
                             <div class="bottom-sub-info">
                                 <span>Order ID: 0123456</span> |
-                                <span>Product 1 of 2</span><!-- ชิ้นที่ 2 จาก 2 -->
+                                <span>Product 1 of 2</span>
                             </div>
                         </div>
                     </ion-item>
@@ -552,6 +552,132 @@
 
             update();
             const timer = setInterval(update, 1000);
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            // ---------- 1) ปุ่ม Write Review → เพิ่มเลขบน badge ----------
+            var writeReviewBtn = document.querySelector('.pd-review .re-write-btn');
+            var messageBadge = document.querySelector('.message-count');
+            updateBadge(messageBadge, reviewCount);
+            var reviewCount = 0;
+            if (messageBadge && messageBadge.textContent) {
+                reviewCount = parseInt(messageBadge.textContent.trim(), 10) || 0;
+            }
+
+            if (writeReviewBtn && messageBadge) {
+                writeReviewBtn.addEventListener('click', function () {
+                    reviewCount++;
+                    updateBadge(messageBadge, reviewCount);
+
+                    // ตรงนี้ถ้ามี popup เขียนรีวิว ค่อยมาเพิ่มต่อได้
+                    // openWriteReviewModal();
+                });
+            }
+
+            // ---------- 2) ปุ่ม Like ทุกอันในรีวิว ----------
+            var reviewList = document.querySelector('.pd-review ion-list');
+
+            if (reviewList) {
+                reviewList.addEventListener('click', function (e) {
+                    var btn = e.target.closest('.re-right-content ion-button.like, .re-right-content ion-button.like-active');
+                    if (!btn) return;
+
+                    var text = btn.textContent ? btn.textContent.trim() : '0';
+                    var count = parseInt(text, 10) || 0;
+                    var isActive = btn.classList.contains('like-active');
+
+                    if (isActive) {
+                        count = Math.max(0, count - 1);
+                        btn.classList.remove('like-active');
+                        btn.classList.add('like');
+                    } else {
+                        count = count + 1;
+                        btn.classList.remove('like');
+                        btn.classList.add('like-active');
+                    }
+
+                    btn.textContent = String(count);
+
+                    // ถ้าจะยิง API จริงก็มาเพิ่มตรงนี้ได้
+                });
+            }
+
+            // ---------- 3) ปุ่ม See More → เพิ่มรีวิวจาก mock data ----------
+            // mock data (สมมติว่ามาจาก API)
+            var extraReviews = [
+                {
+                    name: 'Tony Stark',
+                    avatar: 'assets/img/profile-placeholder.png',
+                    rating: 5,
+                    date: '05 April 2023',
+                    verified: true,
+                    flavor: 'Chocolate Brownie',
+                    description: 'Very good product! Fast delivery and nice packaging.',
+                    likes: 1,
+                    liked: false,
+                    orderId: '9876543',
+                    productInfo: 'Product 2 of 3'
+                },
+                {
+                    name: 'Mark Zuckerberg',
+                    avatar: 'assets/img/profile-placeholder.png',
+                    rating: 4,
+                    date: '10 May 2023',
+                    verified: false,
+                    flavor: '',
+                    description: 'Good but could be improved in terms of sweetness.',
+                    likes: 0,
+                    liked: false,
+                    orderId: '',
+                    productInfo: ''
+                }
+            ];
+
+            var seeMoreBtn = document.querySelector('.pd-review .sm-btn');
+
+            if (seeMoreBtn && reviewList) {
+                seeMoreBtn.addEventListener('click', function () {
+                    extraReviews.forEach(function (r) {
+                        var ionItem = document.createElement('ion-item');
+
+                        ionItem.innerHTML = '\
+            <ion-avatar class="img-content" slot="start">\
+              <img src="' + r.avatar + '">\
+            </ion-avatar>\
+            <div class="re-right-content">\
+              <ion-buttons>\
+                <ion-button class="' + (r.liked ? 'like-active' : 'like') + '">\
+                  ' + r.likes + '\
+                </ion-button>\
+              </ion-buttons>\
+              <div class="name">' + r.name + '</div>\
+              <div class="rate">' + '★★★★★'.slice(0, r.rating) + '</div>\
+              <div class="sub-info">\
+                <span>' + r.date + '</span>' +
+                            (r.verified ? ' | <span class="verify"><img src="assets/icon/verify-icon.svg"> Verified Buyer</span>' : '') +
+                            '</div>' +
+                            (r.flavor ? '<div class="flavor">' + r.flavor + '</div>' : '') +
+                            '<p class="description">' + r.description + '</p>' +
+                            '<div class="bottom-sub-info">' +
+                            (r.orderId ? '<span>Order ID: ' + r.orderId + '</span>' : '') +
+                            (r.productInfo ? ' | <span>' + r.productInfo + '</span>' : '') +
+                            '</div>\
+            </div>\
+          ';
+
+                        reviewList.appendChild(ionItem);
+                    });
+
+                    seeMoreBtn.style.display = 'none';
+                });
+            }
+        });
+        function updateBadge(badge, count) {
+            if (count > 0) {
+                badge.style.display = 'flex';
+                badge.textContent = count;
+            } else {
+                badge.style.display = 'none';
+            }
         }
 
     </script>

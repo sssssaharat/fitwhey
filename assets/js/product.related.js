@@ -3,7 +3,7 @@ export function initRelatedProductSlider(relatedProducts) {
   const sliderRoot = document.querySelector('.pd-product-slider');
   const wrapper = sliderRoot?.querySelector('.pd-product-slide');
   const cartBadge = document.querySelector('.noti-count');
-  let cartCount = 0; // หรือเริ่มที่ 0 ก็ได้
+  let cartCount = 0;
 
   if (!sliderRoot || !wrapper) return;
 
@@ -62,7 +62,6 @@ export function initRelatedProductSlider(relatedProducts) {
     const card = btn.closest('.pd-product-container');
     const productId = card?.dataset.productId;
 
-    // เพิ่มจำนวนสินค้าในตะกร้า
     cartCount++;
     cartBadge.textContent = cartCount;
 
@@ -80,7 +79,7 @@ function formatPrice(amount, currency) {
 async function showAddedToCartToast() {
   const toast = document.createElement('ion-toast');
   toast.message = 'เพิ่มสินค้าในตะกร้าแล้ว';
-  toast.duration = 1500;  // แสดง 1.5 วินาที
+  toast.duration = 1500; 
   toast.position = 'bottom';
   document.body.appendChild(toast);
   await toast.present();
