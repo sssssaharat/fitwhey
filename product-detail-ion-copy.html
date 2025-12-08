@@ -527,7 +527,13 @@
             <ion-toolbar class="menu-bar-wrap">
                 <ion-buttons class="menu-btn">
                     <ion-button class="favorite-btn s-inactive"></ion-button>
-                    <ion-button class="main-footer-btn active">Add to Cart</ion-button>
+                    <ion-button class="main-footer-btn active" id="add-to-cart-btn">
+                        Add to Cart
+                    </ion-button>
+                    <ion-modal id="cartModal">
+                        <div id="cartModalContent"></div>
+                    </ion-modal>
+
                 </ion-buttons>
             </ion-toolbar>
         </ion-footer>
@@ -705,6 +711,50 @@
             }, 3000);
         }
 
+        const addBtn = document.getElementById('add-to-cart-btn');
+        const modal = document.getElementById('cartModal');
+        const modalContent = document.getElementById('cartModalContent');
+
+        let loaded = false;
+
+        addBtn.addEventListener('click', async () => {
+            try {
+                if (!loaded) {
+                    const res = await fetch('modal-cart-ion.html');
+                    const html = await res.text();
+
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+
+                    // ดึงเฉพาะเนื้อหาใน #cart-modal-inner
+                    const inner = doc.querySelector('#cart-modal-inner');
+
+                    if (inner) {
+                        modalContent.innerHTML = inner.innerHTML;
+                        loaded = true;
+
+                        // เซ็ต breakpoint ตรงนี้แทน script ในไฟล์เก่า
+                        modal.initialBreakpoint = 0.85;
+                        modal.breakpoints = [0, 0.85];
+                    } else {
+                        modalContent.innerHTML = '<p>ไม่พบ #cart-modal-inner ใน modal-cart-ion.html</p>';
+                    }
+                }
+
+                // ให้ modal แสดงขึ้น
+                if (modal.componentOnReady) {
+                    (await modal.componentOnReady()).present();
+                } else if (modal.present) {
+                    modal.present();
+                }
+            } catch (err) {
+                console.error(err);
+                modalContent.innerHTML = '<p>โหลดเนื้อหา modal ไม่สำเร็จ</p>';
+                if (modal.present) {
+                    modal.present();
+                }
+            }
+        });
 
     </script>
 </body>
