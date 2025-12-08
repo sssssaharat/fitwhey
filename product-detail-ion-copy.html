@@ -518,7 +518,19 @@
                 </ion-buttons>
             </div>
         </ion-content>
-
+        <!-- bottom fixed tab -->
+        <ion-footer class="footer-menu-common">
+            <div class="pd-noti-float" id="toast">
+                <span class="noti-text"><img src="assets/icon/mini-noti-icon.svg"> This product was last placed 2
+                    minutes ago from Nonthaburi</span>
+            </div>
+            <ion-toolbar class="menu-bar-wrap">
+                <ion-buttons class="menu-btn">
+                    <ion-button class="favorite-btn s-inactive"></ion-button>
+                    <ion-button class="main-footer-btn active">Add to Cart</ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-footer>
     </ion-app>
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
@@ -670,7 +682,10 @@
                     seeMoreBtn.style.display = 'none';
                 });
             }
+            // เรียกโชว์
+            showToast();
         });
+
         function updateBadge(badge, count) {
             if (count > 0) {
                 badge.style.display = 'flex';
@@ -679,6 +694,17 @@
                 badge.style.display = 'none';
             }
         }
+        function showToast() {
+            const toast = document.getElementById("toast");
+
+            toast.classList.add("show");
+
+            // หายไปหลังจาก 3 วินาที
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+
 
     </script>
 </body>

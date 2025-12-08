@@ -178,14 +178,13 @@ ion-content::part(scroll)::-webkit-scrollbar {
 
 .pd-mid-nav-wrap {
   position: sticky;
-  top: 0;             /* หรือ top ตามระยะ header ด้านบน */
+  top: 0;    
   z-index: 20;
 }
 .icon-btn .icon-btn-item {
-  position: relative;               /* ให้ปุ่มเป็นกรอบอ้างอิง */
+  position: relative;         
 }
 
-/* ใช้กับ badge ทั้งรถเข็นและข้อความ */
 .icon-btn .icon-btn-item ion-badge {
   position: absolute;
   top: 2px;
@@ -199,9 +198,29 @@ ion-content::part(scroll)::-webkit-scrollbar {
   font-size: 11px;
   z-index: 10;
 
-  /* สีส้ม + ตัวหนังสือขาวแบบในรูป */
   --background: #f36a21;
   --color: #ffffff;
 }
 
+.pd-noti-float {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    z-index: 9999;
+}
+
+.pd-noti-float.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(-10px);
+}
 
